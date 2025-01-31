@@ -1,0 +1,109 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 24px;
+    margin-left: 20px;
+}
+
+header nav a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+header input[type="text"] {
+    padding: 5px;
+    margin-right: 20px;
+}
+
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f0f8ff;
+}
+
+.hero h1 {
+    font-size: 36px;
+}
+
+.hero p {
+    font-size: 18px;
+}
+
+.hero button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff9900;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.itinerary-details img {
+    width: 100%;
+    height: auto;
+}
+
+.destinations .destination-card {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.destinations img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.map {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.reviews {
+    padding: 20px;
+}
+
+.cta {
+    text-align: center;
+    padding: 20px;
+}
+
+.cta button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff9900;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+footer a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-media a {
+    margin: 0 5px;
+}

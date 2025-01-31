@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Itinerary - TravelMate</title>
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Create Your Itinerary</h1>
+        </div>
+    </header>
+    <main class="container">
+        <form action="/create_itinerary" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="itinerary_name">Itinerary Name</label>
+                <input type="text" id="itinerary_name" name="itinerary_name" required>
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start Date</label>
+                <input type="date" id="start_date" name="start_date" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">End Date</label>
+                <input type="date" id="end_date" name="end_date" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="destinations">Destinations</label>
+                <div id="destination-container">
+                    <!-- Destination fields will be added here dynamically -->
+                </div>
+                <button type="button" id="add-destination-btn">Add Destination</button>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="add-destination-btn">Create Itinerary</button>
+            </div>
+        </form>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 TravelMate. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript to handle adding destinations dynamically
+        document.getElementById('add-destination-btn').addEventListener('click', function() {
+            const container = document.getElementById('destination-container');
+            const index = container.children.length;
+            const destinationHTML = `
+                <div class="form-group">
+                    <label for="destination_name_${index}">Destination Name</label>
+                    <input type="text" id="destination_name_${index}" name="destinations[${index}][name]" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination_description_${index}">Destination Description</label>
+                    <textarea id="destination_description_${index}" name="destinations[${index}][description]" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="destination_images_${index}">Upload Images</label>
+                    <input type="file" id="destination_images_${index}" name="destinations[${index}][images][]" multiple>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', destinationHTML);
+        });
+    </script>
+</body>
+</html>

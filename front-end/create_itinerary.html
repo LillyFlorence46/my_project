@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Itinerary</title>
+    <link rel="stylesheet" href="create_itinerary.css"> 
+</head>
+<body>
+    <header>
+        <h1>Create Your Itinerary</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="view-itineraries.html">View Itineraries</a>
+        </nav>
+    </header>
+    <main>
+        <section class="create-itinerary-form">
+            <h2>Enter Itinerary Details</h2>
+            <form id="itinerary-form" method="POST" enctype="multipart/form-data">
+                <label for="itinerary_name">Itinerary Name:</label>
+                <input type="text" id="itinerary_name" name="itinerary_name" required>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+
+                <label for="start_date">Start Date:</label>
+                <input type="date" id="start_date" name="start_date" required>
+
+                <label for="end_date">End Date:</label>
+                <input type="date" id="end_date" name="end_date" required>
+
+                <label for="pictures">Pictures:</label>
+                <input type="file" id="pictures" name="pictures" accept="image/*" multiple>
+
+                <button type="submit" class="submit-btn">Create Itinerary</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 TravelMate. All rights reserved.</p>
+    </footer>
+    <script src="create_itineraries.js"></script> 
+</body>
+</html>

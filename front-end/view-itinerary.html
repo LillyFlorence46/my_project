@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Itinerary - TravelMate</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .itinerary-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .destination-card {
+            background: #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .destination-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Itinerary Details</h1>
+            <a href="index.html" class="add-destination-btn">Back to Home</a>
+        </div>
+    </header>
+    <main class="container">
+        <div class="itinerary-card">
+            <h2>{{ itinerary.itinerary_name }}</h2>
+            <p><strong>Start Date:</strong> {{ itinerary.start_date }}</p>
+            <p><strong>End Date:</strong> {{ itinerary.end_date }}</p>
+            <p><strong>Description:</strong> {{ itinerary.description }}</p>
+
+            <h3>Destinations:</h3>
+            {% for destination in destinations %}
+                <div class="destination-card">
+                    <h4>{{ destination.name }}</h4>
+                    <p>{{ destination.description }}</p>
+                    {% for image in destination.images %}
+                        <img src="{{ image.url }}" alt="{{ destination.name }}">
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 TravelMate. All rights reserved.</p>
+    </footer>
+</body>
+</html>

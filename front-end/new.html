@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Itinerary - TravelMate</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .form-container h2 {
+            margin-top: 0;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="date"],
+        .form-container input[type="file"],
+        .form-container textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-container textarea {
+            resize: vertical;
+        }
+
+        .destination {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .destination:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .destination img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .add-destination-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .add-destination-btn:hover {
+            background-color: #45a049;
+        }
+
+        .remove-destination-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+        .remove-destination-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Create a New Itinerary</h1>
+            <a href="index.html" class="add-destination-btn">Back to Home</a>
+        </div>
+    </header>
+    <main class="container">
+        <div class="form-container">
+            <h2>Itinerary Details</h2>
+            <form id="itinerary-form" action="/create_itinerary" method="POST" enctype="multipart/form-data">
+                <label for="itinerary_name">Itinerary Name:</label>
+                <input type="text" id="itinerary_name" name="itinerary_name" required>
+
+                <label for="start_date">Start Date:</label>
+                <input type="date" id="start_date" name="start_date" required>
+
+                <label for="end_date">End Date:</label>
+                <input type="date" id="end_date" name="end_date" required>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+
+                <div id="destinations-container">
+                    <!-- Dynamic destination fields will be added here -->
+                </div>
+
+                <button type="button" id="add-destination" class="add-destination-btn">Add Destination</button>
+                <button type="submit" class="add-destination-btn">Create Itinerary</button>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 TravelMate. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let destinationCount = 0;
+
+            function createDestinationField(id) {
+                return `
+                    <div class="destination" id="destination-${id}">
+                        <h3>Destination ${id + 1}</h3>
+                        <label for="destination_name_${id}">Destination Name:</label>
+                        <input type="text" id="destination_name_${id}" name="destinations[${id}][name]" required>
+                        
+                        <label for="destination_description_${id}">Description:</label>
+                        <textarea id="destination_description_${id}" name="destinations[${id}][description]" rows="2" required></textarea>
+
+                        <label for="destination_images_${id}">Upload Images:</label>
+                        <input type="file" id="destination_images_${id}" name="destinations[${id}][images]" multiple accept="image/*">
+
+                        <button type="button" class="remove-destination-btn" onclick="removeDestination(${id})">Remove Destination</button>
+                    </div>
+                `;
+            }
+
+            function addDestination() {
+                destinationCount++;
+                const container = document.getElementById('destinations-container');
+                container.insertAdjacentHTML('beforeend', createDestinationField(destinationCount));
+            }
+
+            function removeDestination(id) {
+                const destinationElement = document.getElementById(`destination-${id}`);
+                if (destinationElement) {
+                    destinationElement.remove();
+                }
+            }
+
+            document.getElementById('add-destination').addEventListener('click', addDestination);
+        });
+    </script>
+</body>
+</html>
